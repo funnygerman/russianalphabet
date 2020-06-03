@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:russianalphabet/consts/letter_card_items.dart';
 import 'package:russianalphabet/widget/letter_board.dart';
 
 import 'i18n/app_localizations.dart';
@@ -93,6 +94,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: LetterBoard(
         boardWidth: 5,
         boardHeight: 7,
+        items: letterCardItems,
       ),
     );
   }

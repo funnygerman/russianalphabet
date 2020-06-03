@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:russianalphabet/consts/letters.dart';
-import 'package:russianalphabet/i18n/app_localizations.dart';
-import 'package:russianalphabet/model/letter.dart';
+import 'package:russianalphabet/model/letter_card_item.dart';
 
 class LetterBoard extends StatelessWidget {
   final int boardWidth;
   final int boardHeight;
+  final List<LetterCardItem> items;
 
-  LetterBoard({this.boardWidth, this.boardHeight});
+  LetterBoard({this.boardWidth, this.boardHeight, this.items});
 
   @override
   Widget build(BuildContext context) {
@@ -38,18 +37,12 @@ class LetterBoard extends StatelessWidget {
   List<Widget> _addRowElements(int rowNumber, BuildContext context) {
     var elements = <Widget>[];
     for (var i = 0; i < boardWidth; i++) {
+      LetterCardItem currentItem = items[rowNumber * boardWidth + i];
       elements.add(
         Expanded(
           child: LetterCard(
-            letter: LETTERS[rowNumber * boardWidth + i],
-            showCardText: (letter) {
-              if (letter != EMPTY_LETTER) {
-                return AppLocalizations.of(context)
-                    .string(letter.exampleStrKey);
-              } else {
-                return '';
-              }
-            },
+            letterKey: currentItem.key,
+            text: currentItem.text,
           ),
         ),
       );
@@ -59,21 +52,21 @@ class LetterBoard extends StatelessWidget {
 }
 
 class LetterCard extends StatelessWidget {
-  final Letter letter;
-  final String Function(Letter) showCardText;
+  final String letterKey;
+  final String text;
 
-  LetterCard({this.letter, this.showCardText});
+  LetterCard({this.letterKey, this.text});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => print('The letter with key ${letter.key} was pressed'),
+      onTap: () => print('The letter with key $letterKey was pressed'),
       child: Container(
         margin: EdgeInsets.all(4.0),
         color: Colors.blue,
         child: Center(
           child: Text(
-            showCardText(letter),
+            text,
           ),
         ),
       ),
