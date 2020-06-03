@@ -14,15 +14,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      supportedLocales: [
-        Locale('en', 'US'),
-        Locale('de', 'DE'),
-      ],
       localizationsDelegates: [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
       ],
+      localeResolutionCallback: (locale, supportedLocales) =>
+          !supportedLocales.contains(locale) ? supportedLocales.first : locale,
       title: 'Flutter Demo',
       theme: ThemeData(
         // This is the theme of your application.
