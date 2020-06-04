@@ -47,7 +47,7 @@ const Letter yo = Letter(
   key: 'yo',
   letter: 'Ё',
   transcriptionStrKey: kKeyYoTranscription,
-  exampleStrKey: kKeyAExample,
+  exampleStrKey: kKeyYoExample,
 );
 const Letter zh = Letter(
   key: 'zh',
