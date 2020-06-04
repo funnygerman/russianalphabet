@@ -57,13 +57,9 @@ class LetterBoard extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         print('The letter with key $letterKey was pressed');
-        // onItemClick(letterKey);
-        Letter pressedLetter = letters[letterKey];
-        showDialog(
-            context: context,
-            builder: (BuildContext context) {
-              return LetterDetailsDialog(pressedLetter: pressedLetter);
-            });
+        if (onItemClick != null) {
+          onItemClick(letterKey);
+        }
       },
       child: Container(
         margin: EdgeInsets.all(4.0),
