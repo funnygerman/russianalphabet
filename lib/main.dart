@@ -16,13 +16,17 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      supportedLocales: [
+        Locale('en', 'EN'),
+        Locale('de', 'DE'),
+      ],
       localizationsDelegates: [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
       ],
       localeResolutionCallback: (locale, supportedLocales) =>
-          !supportedLocales.contains(locale) ? supportedLocales.first : locale,
+          !supportedLocales.contains(locale) ? locale : supportedLocales.first,
       title: 'Flutter Demo',
       theme: ThemeData(
         // This is the theme of your application.
@@ -61,7 +65,7 @@ class LetterBoardPage extends StatelessWidget {
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
-        title: Text('Russian Alphabet'),
+        title: Text(AppLocalizations.of(context).string('app_title')),
       ),
       body: LetterBoard(
         boardWidth: 5,
